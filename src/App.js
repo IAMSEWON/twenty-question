@@ -1,17 +1,15 @@
-import React, { useEffect } from "react";
-
-import Listing from "./components/Listing/Listing";
+import React, { useState } from "react";
 import Main from "./components/Main/Main";
+import AppContext from "./store/appContext";
 
 function App() {
-  useEffect(() => {
-    setTimeout(() => {}, 300);
-  });
+  const [step, setStep] = useState(0);
   return (
-    <div className="App">
+    <AppContext.Provider
+      value={{ currentStep: step, increaseCurrentStep: () => setStep(step + 1) }}
+    >
       <Main />
-      <Listing />
-    </div>
+    </AppContext.Provider>
   );
 }
 
